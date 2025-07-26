@@ -1,0 +1,17 @@
+services:
+  tesseract-ocr:
+    container_name: tesseract-ocr
+    build:
+      context: .
+      target: development
+
+    env_file:
+      - .env.dev
+    ports:
+      - 3444:3444
+
+    networks:
+      - tesseract_ocr
+
+networks:
+  tesseract_ocr:
