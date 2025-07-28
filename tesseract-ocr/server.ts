@@ -16,7 +16,16 @@ app.prepare().then(() => {
 
   io.on("connection", (socket) => {
     // ...
+    socket.emit('greeting', { message: "Socket.io" })
+    socket.on("videoData", (data) => {
+      io.emit("receiveData", data)
+    })
+    socket.on("stopRecording", (data) => {
+      io.emit("stopData", data)
+    })
   });
+
+
 
   httpServer
     .once("error", (err) => {
